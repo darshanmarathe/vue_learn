@@ -1,0 +1,29 @@
+{
+  "posts": [
+    {
+      "id": "f4ee16a4-9503-4a60-9de1-d139b4a194bd",
+      "body": "this is cool product lets see how we can really use this",
+      "likes": [
+        {
+          "by": "aditi"
+        }
+      ],
+      "dislikes": [],
+      "comments": [],
+      "postedOn": "2021-02-22T09:56:20.140Z",
+      "by": "Aditi"
+    },
+    {
+      "id": "a9e0aa1f-db12-4db5-a0d3-3cf2900037fb",
+      "body": "that is a nice progress lets keep progressing",
+      "likes": [],
+      "dislikes": [],
+      "comments": [],
+      "postedOn": "2021-02-22T10:14:37.354Z",
+      "by": "Aditi"
+    }
+  ],
+  "users": [],
+  "nodes": [],
+  "hashtags": []
+}

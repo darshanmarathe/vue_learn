@@ -1,5 +1,15 @@
 # vueapp
 
+## High level roadmap 
+    Post item 
+    Post like 
+    Post Dislike 
+    Put date and time 
+    Comments
+    Create server side API 
+    Have the ACID test
+    
+
 ## Project setup
 ```
 npm install
@@ -22,3 +32,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+
