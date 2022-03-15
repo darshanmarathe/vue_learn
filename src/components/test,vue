@@ -1,0 +1,88 @@
+<template>
+  <div>
+    <p>{{ title }}</p>
+    <ul ref="modal">
+      <li v-for="todo in todos" :key="todo.id" @click="increment">
+        {{ todo.id }} - {{ todo.content }}
+      </li>
+    </ul>
+    <p>Count: {{ todoCount }} / {{ meta.totalCount }}</p>
+    <p>Active: {{ active ? 'yes' : 'no' }}</p>
+    <p>Clicks on todos: {{ clickCount }}</p>
+
+    <q-select
+      v-model="model"
+      ref="qselect"
+      :options="options"
+      label="Standard"
+    />
+  </div>
+</template>
+
+<script lang="ts">
+import { QSelect } from 'quasar';
+import {
+  defineComponent,
+  PropType,
+  computed,
+  ref,
+  toRef,
+  Ref,
+  onMounted,
+} from 'vue';
+import { Todo, Meta } from './models';
+
+function useClickCount(modal: any) {
+  const clickCount = ref(0);
+  function increment() {
+    clickCount.value += 1;
+    debugger;
+    modal.value.style.background = 'red';
+    return clickCount.value;
+  }
+
+  return { clickCount, increment };
+}
+
+function useDisplayTodo(todos: Ref<Todo[]>) {
+  const todoCount = computed(() => todos.value.length);
+  return { todoCount };
+}
+
+export default defineComponent({
+  name: 'ExampleComponent',
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+    todos: {
+      type: Array as PropType<Todo[]>,
+      default: () => [],
+    },
+    meta: {
+      type: Object as PropType<Meta>,
+      required: true,
+    },
+    active: {
+      type: Boolean,
+    },
+  },
+  setup(props) {
+    const modal = ref<InstanceType<typeof HTMLElement> | null>(null);
+    const qselect = ref<InstanceType<typeof QSelect> | null>(null);
+
+    onMounted(() => {
+      console.log(qselect.value?.showPopup());
+    });
+    return {
+      model: ref(null),
+      options: ['Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'],
+      ...useClickCount(modal),
+      ...useDisplayTodo(toRef(props, 'todos')),
+      modal,
+      qselect,
+    };
+  },
+});
+</script>
