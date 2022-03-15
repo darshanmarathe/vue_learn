@@ -32,12 +32,14 @@ import {
 } from 'vue';
 import { Todo, Meta } from './models';
 
-function useClickCount(modal: any) {
+function useClickCount(modal: Ref<HTMLElement | null>) {
   const clickCount = ref(0);
   function increment() {
     clickCount.value += 1;
     debugger;
-    modal.value.style.background = 'red';
+    if (modal.value) {
+      modal.value.style.background = 'red';
+    }
     return clickCount.value;
   }
 
